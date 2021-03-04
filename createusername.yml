@@ -1,0 +1,15 @@
+---
+
+- hosts: docker
+  
+  tasks:
+  - name: Create a login user
+    user:
+      name: ansible
+      password: '$6$QF8oX2vrGAtUP$Ugr8yN.Xvy8yCs.r5g/C8Pk.sKAx5axP.wJPnLzTMBM1aNSdenFqoo2A08CwY1mKArmbeDFt5rmJ2K8OfXOWt.'
+      groups: docker, sudo   # Empty by default.
+      state: present
+      shell: /bin/bash       # Defaults to /bin/bash
+      system: no             # Defaults to no
+      createhome: yes        # Defaults to yes
+      home: /home/fideloper  # Defaults to /home/<username>

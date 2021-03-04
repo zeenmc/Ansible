@@ -1,0 +1,23 @@
+
+---
+
+- hosts: docker
+  become: true
+  
+  tasks:
+  - name: Install docker
+    apt: 
+      name: docker.io
+      state: latest
+
+#Konfigurise startovanje servisa nakon sto se server rebootuje
+  - name: Start docker service, if not started
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+
+
+  - name: Adding in this case user zeenmc to docker group  
+    command: sudo gpasswd -a zeenmc docker
+# U slucaju potrebe, restartovace servere iz inventory fajla
